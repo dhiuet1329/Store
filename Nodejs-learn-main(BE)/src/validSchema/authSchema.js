@@ -12,4 +12,5 @@ export const authSchema = Joi.object({
     "string.min": "Password must have at least 6 characters",
     "string.max": "Password must have at least 255 characters",
   }),
+  role: Joi.string(),
 });

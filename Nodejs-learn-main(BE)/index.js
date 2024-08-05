@@ -3,6 +3,8 @@ import express from "express";
 import { connectDB } from "./src/config/db.js";
 import routerProduct from "./src/router/product.js";
 import routerAuth from "./src/router/auth.js";
+import routerCategory from "./src/router/category.js";
+import routerCart from "./src/router/cart.js";
 
 const app = express();
 
@@ -13,6 +15,8 @@ connectDB();
 
 app.use("/api", routerProduct);
 app.use("/api/user", routerAuth);
+app.use("/api", routerCategory);
+app.use("/", routerCart);
 const errorNotFound = (req, res, next) => {
   const error = new Error(`Not found`);
   error.status = 404;

@@ -15,4 +15,5 @@ export const productSchema = Joi.object({
   description: Joi.string().messages({
     "string.base": "description must be a string",
   }),
+  categoryId: Joi.string().required(),
 });
