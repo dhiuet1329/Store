@@ -1,28 +1,36 @@
-import { createContext, useEffect, useReducer } from "react";
-import { Product } from "../interfaces/Product";
+import React, { createContext, useEffect, useReducer } from "react";
+import { Product } from "./../interfaces/Product";
 import productReducer from "../reducers/productReducer";
+import { useNavigate } from "react-router-dom";
 import instance from "../axios";
 
+type ProductAction = {
+  type: "ADD_PRODUCT" | "REMOVE_PRODUCT";
+  payload: string | number;
+};
 export type ProductContextType = {
   state: { products: Product[] };
-  dispatch: React.Dispatch<string>;
-  removeProduct: (id: string | number | undefined) => void;
-  handleProduct: (product: Product) => void;
+  dispatch: React.Dispatch<ProductAction>;
+  removeProduct: (id: string | undefined) => void;
+  handleProduct: (data: Product) => void;
 };
+
 export const ProductContext = createContext({} as ProductContextType);
+
 const ProductProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(productReducer, { products: [] });
-
+  const nav = useNavigate();
   useEffect(() => {
     (async () => {
       const { data } = await instance.get("/products");
-      dispatch({ type: "GET_PRODUCTS", payload: data.data });
+      // console.log(data);
+      dispatch({ type: "GET_PRODUCTS", payload: data.products });
     })();
   }, []);
-  const removeProduct = async (id: string | number | undefined) => {
+  const removeProduct = async (id: string | undefined) => {
     try {
       await instance.delete(`/products/${id}`);
-      dispatch({ type: "REMOVE_PRODUCT", payload: id });
+      dispatch({ type: "REMOVE_PRODUCT", payload: id as string });
     } catch (error) {
       console.log(error);
     }
@@ -35,10 +43,9 @@ const ProductProvider = ({ children }: { children: React.ReactNode }) => {
           product
         );
         dispatch({ type: "UPDATE_PRODUCT", payload: data.data });
-      } else {
-        const { data } = await instance.post("/products", product);
-        dispatch({ type: "ADD_PRODUCT", payload: data.data });
+        alert(data.message);
       }
+      nav("/admin");
     } catch (error) {
       console.log(error);
     }
@@ -51,4 +58,5 @@ const ProductProvider = ({ children }: { children: React.ReactNode }) => {
     </ProductContext.Provider>
   );
 };
+
 export default ProductProvider;

@@ -70,10 +70,10 @@ header {
   }
 }
 form {
-  width: 500px;
+  width: 400px;
   max-width: 100%;
   padding: 35px 40px;
-  border: 1px solid #dddddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   margin: 10px auto;
   border-radius: 10px;
   background-color: #ffffff !important;
@@ -158,12 +158,12 @@ form {
 
   //side bar
   #sidebar {
-    width: 250px;
-    height: 100vh;
-    background-color: rgba(49, 58, 70, 255);
-    .sidebar-header {
-      padding: 20px;
-      color: rgb(185, 185, 188);
+    .user {
+      .user-img {
+        width: 50px;
+        border-radius: 100%;
+        border: 1px solid #eee;
+      }
     }
     .active {
       font-weight: bold;

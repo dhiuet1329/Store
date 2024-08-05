@@ -2,16 +2,19 @@
 // import React from 'react'
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Product } from "../interfaces/Product";
+import { Product } from "../../interfaces/Product";
 
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { useContext, useEffect } from "react";
-import instance from "../axios";
-import { productSchema } from "../utils/validation";
-import { ProductContext, ProductContextType } from "../contexts/ProductContext";
+import instance from "../../axios";
+import { productSchema } from "../../utils/validation";
+import {
+  ProductContext,
+  ProductContextType,
+} from "../../contexts/ProductContext";
 
-const ProductForm = () => {
+const CategoryForm = () => {
   const { handleProduct } = useContext(ProductContext) as ProductContextType;
   const { id } = useParams();
   const {
@@ -72,14 +75,7 @@ const ProductForm = () => {
             {...register("description", { required: true })}
           />
         </div>
-        {/* <section className="mb-3">
-          <label htmlFor="category" className="form-label">
-            category
-          </label>
-          <option className="form-control" {...register("description")} />
-          <option className="form-control" {...register("description")} />
-          <option className="form-control" {...register("description")} />
-        </section> */}
+
         <div className="mb-3">
           <button type="submit" className="btn btn-primary w-100">
             Submit
@@ -90,4 +86,4 @@ const ProductForm = () => {
   );
 };
 
-export default ProductForm;
+export default CategoryForm;

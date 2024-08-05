@@ -5,17 +5,29 @@ import { Link } from "react-router-dom";
 export default function SideBar() {
   return (
     <div id="sidebar">
-      <div className="sidebar-header">
-        <h3>
-          <img src="" className="img-fluid" />
-          <span>React</span>
-        </h3>
+      <div className="top">
+        <img src="https://theme.hstatic.net/200000378371/1001142643/14/logo.png?v=561" />
+        <i className="bx bx-menu" id="btn"></i>
+      </div>
+      <div className="user">
+        <img
+          src="https://mka.com.vn/wp-content/uploads/2023/02/31.jpeg"
+          alt="me"
+          className="user-img"
+        />
+        <div>
+          <p>Meo Meo</p>
+          <p>Admin</p>
+        </div>
       </div>
       <ul className="list-unstyled component m-0">
         <li className="active">
+          <i className="bx bx-grid-alt"></i>
           <Link to="/admin">Dashboard</Link>
+          <span className="tooltip">Dashboard</span>
         </li>
         <li className="active">
+          <i className="bx bx-grid-alt"></i>
           <Link to="/admin/user">User</Link>
         </li>
         <li className="active">

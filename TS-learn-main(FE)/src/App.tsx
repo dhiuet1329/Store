@@ -2,11 +2,12 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import AuthForm from "./components/AuthForm";
 import LayoutClient from "./components/LayoutClient";
-import ProductForm from "./components/ProductForm";
+import LayoutAdmin from "./components/admin/LayoutAdmin";
+import ProductForm from "./components/admin/ProductForm";
+
+import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/admin/Dashboard";
 import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
-import LayoutAdmin from "./components/admin/LayoutAdmin";
 
 function App() {
   // const handleRemove = async (_id: number) => {

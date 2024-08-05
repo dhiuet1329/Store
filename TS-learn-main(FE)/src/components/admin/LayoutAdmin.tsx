@@ -2,7 +2,7 @@
 
 import { Outlet } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-import SideBar from "./SideBar";
+// import SideBar from "./SideBar";
 
 const LayoutAdmin = () => {
   const { user } = useAuth();
@@ -19,7 +19,7 @@ const LayoutAdmin = () => {
             data-background-color="white"
             data-active-color="danger"
           >
-            <SideBar />
+            {/* <SideBar /> */}
           </div>
           <div className="main-panel">
             <Outlet />

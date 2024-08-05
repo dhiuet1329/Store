@@ -1,9 +1,7 @@
-// import React from 'react'
+import React from "react";
 
-type Props = {};
-
-const Home = (props: Props) => {
-  return <div>Home</div>;
+const Home = () => {
+  return <div>home</div>;
 };
 
 export default Home;

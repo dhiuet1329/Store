@@ -1,4 +1,4 @@
-// import React from "react";
+import React from "react";
 
 import { useContext } from "react";
 import { Link } from "react-router-dom";
@@ -11,7 +11,7 @@ const Dashboard = () => {
   const { state, removeProduct } = useContext(
     ProductContext
   ) as ProductContextType;
-
+  console.log(state);
   return (
     <>
       <div className="d-flex flex-row-reverse bd-highlight">
@@ -25,6 +25,7 @@ const Dashboard = () => {
             <th>ID</th>
             <th>Title</th>
             <th>Price</th>
+            <th>Category</th>
             <th>Description</th>
             <th>Thumbnail</th>
             <th>Action</th>
@@ -36,6 +37,7 @@ const Dashboard = () => {
               <td>{item._id}</td>
               <td>{item.title}</td>
               <td>{item.price}</td>
+              <td>{item.category?.title}</td>
               <td>{item.description}</td>
               <td>
                 <img src={item.thumbnail} width={100} />
@@ -48,7 +50,7 @@ const Dashboard = () => {
                   Update
                 </Link>
                 <button
-                  onClick={() => removeProduct(item._id)}
+                  onClick={() => removeProduct(item._id?.toString())}
                   className="btn btn-danger"
                 >
                   Remove

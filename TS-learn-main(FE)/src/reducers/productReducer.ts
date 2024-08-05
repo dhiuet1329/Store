@@ -5,32 +5,43 @@ type State = {
 };
 type Action = {
   type: string;
-  payload: Product;
+  payload: string | number;
 };
-const productReducer = (state: State, action: Action) => {
+const productReducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "GET_PRODUCTS":
       return {
         ...state,
-        products: action.payload,
+        products: Array.isArray(action.payload) ? action.payload : [],
       };
     case "ADD_PRODUCT":
-      return {
-        ...state,
-        products: [...state.products, action.payload],
-      };
+      if (typeof action.payload === "object" && "_id" in action.payload) {
+        return {
+          ...state,
+          products: Array.isArray(state.products)
+            ? [...state.products, action.payload as Product]
+            : [action.payload as Product],
+        };
+      } else {
+        return state;
+      }
+      break;
     case "UPDATE_PRODUCT":
       return {
         ...state,
-        products: state.products.map((product) =>
-          product._id === action.payload._id ? action.payload : product
-        ),
+        products: state.products.map((product) => {
+          if (typeof action.payload === "object" && "_id" in action.payload) {
+            const payload = action.payload as { _id: string };
+            return product._id === payload._id ? action.payload : product;
+          }
+          return product;
+        }),
       };
     case "REMOVE_PRODUCT":
       return {
         ...state,
         products: state.products.filter(
-          (product) => product._id !== action.payload._id
+          (product) => product._id !== action.payload
         ),
       };
     default:
